@@ -4,7 +4,7 @@ class CampaniaRepository {
   static agregarCampania(clienteId, nombreCampania, fechaHoraProgramacion, estado) {
     return new Promise((resolve, reject) => {
       db.query(
-        'CALL agregar_campania_por_cliente(?, ?, ?, ?)',
+        'CALL sp_agregar_campania_por_cliente(?, ?, ?, ?)',
         [clienteId, nombreCampania, fechaHoraProgramacion, estado],
         (err, results) => {
           if (err) reject(err);

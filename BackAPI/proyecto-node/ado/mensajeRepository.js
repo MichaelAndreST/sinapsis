@@ -4,7 +4,7 @@ class MensajeRepository {
   static listarMensajesActivos(pMes, pClienteId = null) {
     return new Promise((resolve, reject) => {
       db.query(
-        'CALL listar_mensajes_activos(?, ?)',
+        'CALL sp_listar_mensajes_activos(?, ?)',
         [pMes, pClienteId],
         (err, results) => {
           if (err) reject(err);
