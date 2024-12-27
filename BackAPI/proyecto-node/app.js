@@ -1,22 +1,36 @@
- const express = require('express');
-const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
-
-dotenv.config();
+const express = require('express');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJSDoc = require('swagger-jsdoc');
+const messagesRoutes = require('./routes/mensaje');
+const campaignRoutes = require('./routes/campaign');  // Importa las rutas de campaña
 
 const app = express();
-const port = process.env.PORT || 3000;
 
-app.use(bodyParser.json());
+// Configuración de Swagger
+const swaggerOptions = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'API de Mensajes y Campañas',
+            version: '1.0.0',
+            description: 'API para gestionar mensajes y campañas',
+        },
+    },
+    apis: ['./routes/*.js'], // Ruta donde se encuentran las anotaciones Swagger
+};
 
-// Rutas
-const CampaniaController = require('./controllers/campaniaController');
-const MensajeController = require('./controllers/mensajeController');
+const swaggerSpec = swaggerJSDoc(swaggerOptions);
 
-// Definir las rutas para la API
-app.post('/api/campania/agregar', CampaniaController.agregarCampania);
-app.get('/api/mensajes', MensajeController.listarMensajesActivos);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+// Usar las rutas de mensajes y campañas
+app.use(express.json());  // Para procesar el cuerpo de la solicitud JSON
+app.use(messagesRoutes);
+app.use(campaignRoutes);  // Agregar las rutas de campaña
+
+// Iniciar el servidor
+const port = 3000;
 app.listen(port, () => {
-  console.log(`Servidor escuchando en puerto ${port}`);
+    console.log(`Servidor escuchando en http://localhost:${port}`);
+    console.log(`Documentación de la API en http://localhost:${port}/api-docs`);
 });
