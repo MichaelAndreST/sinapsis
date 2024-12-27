@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\BackAPI",
+    "\\BackAPI\\SinapsisAPI"
   ],
-  "SelectedNode": "\\BackAPi",
   "PreviewInSolutionExplorer": false
 }

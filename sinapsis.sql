@@ -84,6 +84,63 @@ CREATE TABLE IF NOT EXISTS `sinapsis`.`mensaje` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+DELIMITER $$
+
+CREATE PROCEDURE `sp_listar_mensajes_activos`(
+    IN `p_mes` INT,
+    IN `p_cliente_id` INT NULL
+)
+BEGIN
+    SELECT 
+        m.idMensaje, 
+        m.idCampania, 
+        m.estadoEnvio, 
+        m.fechaHoraEnvio, 
+        m.mensaje, 
+        m.estado,
+        c.nombre AS cliente_nombre
+    FROM 
+        sinapsis.mensaje m
+    JOIN 
+        sinapsis.campania ca ON m.idCampania = ca.idCampania
+    JOIN 
+        sinapsis.usuario u ON ca.idUsuario = u.idUsuario
+    JOIN 
+        sinapsis.cliente c ON u.idCliente = c.idCliente
+    WHERE 
+        m.estado = 1 
+        AND MONTH(m.fechaHoraEnvio) = p_mes
+        AND (p_cliente_id IS NULL OR u.idCliente = p_cliente_id)
+    ORDER BY 
+        m.fechaHoraEnvio DESC;
+END $$
+
+
+CREATE PROCEDURE `sp_agregar_campania_por_cliente`(
+    IN `p_cliente_id` INT,
+    IN `p_nombre_campania` VARCHAR(200),
+    IN `p_fechaHoraProgramacion` DATETIME,
+    IN `p_estado` TINYINT
+)
+BEGIN
+    DECLARE v_idUsuario INT;
+
+    SELECT idUsuario INTO v_idUsuario
+    FROM sinapsis.usuario
+    WHERE idCliente = p_cliente_id
+    LIMIT 1;
+
+    IF v_idUsuario IS NULL THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'No se encontró un usuario asociado al cliente especificado.';
+    ELSE
+        INSERT INTO sinapsis.campania (nombre, idUsuario, fechaHoraProgramacion, estado)
+        VALUES (p_nombre_campania, v_idUsuario, p_fechaHoraProgramacion, p_estado);
+    END IF;
+
+END $$
+
+DELIMITER ;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

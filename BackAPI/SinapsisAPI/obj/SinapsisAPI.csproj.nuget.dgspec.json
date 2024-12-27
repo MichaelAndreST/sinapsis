@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\sinapsis2\\MichaelAndreST\\sinapsis\\BackAPI\\SinapsisAPI\\SinapsisAPI.csproj": {}
+    "D:\\sinpasis\\sinapsis\\BackAPI\\SinapsisAPI\\SinapsisAPI.csproj": {}
   },
   "projects": {
-    "D:\\sinapsis2\\MichaelAndreST\\sinapsis\\BackAPI\\SinapsisAPI\\SinapsisAPI.csproj": {
+    "D:\\sinpasis\\sinapsis\\BackAPI\\SinapsisAPI\\SinapsisAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\sinapsis2\\MichaelAndreST\\sinapsis\\BackAPI\\SinapsisAPI\\SinapsisAPI.csproj",
+        "projectUniqueName": "D:\\sinpasis\\sinapsis\\BackAPI\\SinapsisAPI\\SinapsisAPI.csproj",
         "projectName": "SinapsisAPI",
-        "projectPath": "D:\\sinapsis2\\MichaelAndreST\\sinapsis\\BackAPI\\SinapsisAPI\\SinapsisAPI.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "D:\\sinapsis2\\MichaelAndreST\\sinapsis\\BackAPI\\SinapsisAPI\\obj\\",
+        "projectPath": "D:\\sinpasis\\sinapsis\\BackAPI\\SinapsisAPI\\SinapsisAPI.csproj",
+        "packagesPath": "C:\\Users\\michaelst\\.nuget\\packages\\",
+        "outputPath": "D:\\sinpasis\\sinapsis\\BackAPI\\SinapsisAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\michaelst\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -48,6 +47,10 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.4, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -73,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
